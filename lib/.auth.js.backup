@@ -1,0 +1,53 @@
+const pgPool        = require('./db.js');
+module.exports.passwordCheck = async function(username, password) {
+    console.log("<<passworCheck input : username :" +username +" password : "+password);
+    var checkResult = false ;
+    if ( username !== undefined && password !== undefined) {
+        var checkResult = false ; 
+        //
+        //
+        //
+        // const res = await pgPool.query('SELECT NOW()')
+        // await pgPool.end()
+        //        
+        //
+        //
+        const Result = await pgPool.sync_query("select count(*) from users where users.name = $1 and users.password = $2 ;",[username,password], function(err, res) {
+            console.log(">> >> >> Auth query result "+res.rows[0]+" << << <<");
+            if ( res.rows.length > 0 ) {
+                if ( res.rows[0].count > 0  ){
+                    console.log(":::::: set checkResult from : " + checkResult + " to true");
+                    checkResult = true;
+                } else {
+                    console.log(":::::: set checkResult from : " + checkResult + " to false");
+                    checkResult = false ;
+                } 
+
+            } else {
+                checkResult = false ; 
+            }
+        });
+        //
+        //
+        /*if ( result.rows.length > 0 ) {
+            if ( result.rows[0].count > 0  ){
+                console.log(":::::: set checkResult from : "+checkResult+" to true");
+                checkResult = true;
+            } else {
+                console.log(":::::: set checkResult from : "+checkResult+" to false");
+                checkResult = false ;
+            } 
+        } else {
+            checkResult = false ; 
+        }*/
+
+        //
+        //
+        //
+    } else {
+        checkResult = false;
+    }
+    console.log(":::::: exit from passwordCheck function : ");
+    return checkResult;
+};
+//var passwordCheckCallback = function(err,res) { };

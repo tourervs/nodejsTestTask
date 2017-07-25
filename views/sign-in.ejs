@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="<%= url %>/favicon.ico">
+
+    <title>Вход</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="<%= url %>/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="<%= url %>/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="<%= url %>/css/signin.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="<%= url %>/js/ie-emulation-modes-warning.js"></script>
+    <script type="text/javascript"  src="<%= url %>/js/2.5.3-crypto-md5.js"></script>
+    <script type="text/javascript"  src="<%= url %>/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript"  src="<%= url %>/js/welcome.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <form class="form-signin" id="sign-in-form" action="<%= url %>/signin" method="post">
+        <h2 class="form-signin-heading">Вход</h2>
+        <% for ( var i = 0; i < messages.length ; i++ ) {  %>
+            <div class="<%= messages[i].classes %>"><%= messages[i].text %></div>
+        <% } %>
+        <label for="inputEmail" class="text-muted">имя пользователя:</label>
+        <input type="text" id="username" name="username" class="form-control" required autofocus>
+        <label for="inputPassword" class="text-muted">пароль:</label>
+        <input type="password" id="password_form_field" name="password_form_field" class="form-control" required>
+        
+        <input type="hidden" id="encrypted_password" name="encrypted_password"  class="form-control">
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Вход</button>
+        <label>
+            <a class="btn btn-link" href="<%= signup_url %>">Регистрация</a>
+        </label>
+      </form>
+
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="<%= url %>/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
